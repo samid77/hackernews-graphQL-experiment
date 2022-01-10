@@ -1,2 +1,2 @@
-# hackernews-graphQL-experiment
-An experiment of graphQL using apollo and react
+# Social Media GraphQL React
+An experiment of graphQL with react
