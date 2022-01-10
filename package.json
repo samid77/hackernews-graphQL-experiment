@@ -1,0 +1,24 @@
+{
+  "name": "socialmediaapp-graphql-experiment",
+  "version": "1.0.0",
+  "description": "An experiment of GraphQL, React, Sematic UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samid77/socialmediaapp-graphQL-experiment.git"
+  },
+  "author": "Samid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samid77/socialmediaapp-graphQL-experiment/issues"
+  },
+  "homepage": "https://github.com/samid77/socialmediaapp-graphQL-experiment#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.1",
+    "graphql": "^16.2.0",
+    "mongoose": "^6.1.5"
+  }
+}
