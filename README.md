@@ -1,2 +1,2 @@
 # Social Media GraphQL React
-An experiment of graphQL with react
+An experiment of GraphQL, React, MongoDB and Sematic UI
