@@ -1,20 +1,17 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
 const gql = require('graphql-tag');
-const { MONGODB } = require('./config.js')
+const { MONGODB } = require('./config.js');
 
-const typeDefs = gql`
-  type Query{
-    sayHi: String!
-  }
-`
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
 
-/** Set logic for queries */
-const resolvers = {
-  Query: {
-    sayHi: () => 'FirstQuery from Apollo Samid'
-  }
-}
+
+/** Setup apollo server */
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
 
 /** Connect to DB */
 mongoose
@@ -26,12 +23,5 @@ mongoose
   .then(res => {
     console.log(`Server running at ${res.url} ...`)
   })
-
-
-/** Setup apollo server */
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-});
 
   
