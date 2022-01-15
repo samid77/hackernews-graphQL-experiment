@@ -4,6 +4,7 @@
   "description": "An experiment of GraphQL, React, Sematic UI",
   "main": "index.js",
   "scripts": {
+    "server": "node index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index"
   },
