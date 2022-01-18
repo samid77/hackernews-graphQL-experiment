@@ -39,7 +39,7 @@ function PostCard({
             </Label>
           </Button>
         </MyPopup>
-        {/* {user && user.username === username && <DeleteButton postId={id} />} */}
+        {user && user.username === username && <DeleteButton postId={id} />}
       </Card.Content>
     </Card>
   );

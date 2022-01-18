@@ -13,6 +13,9 @@ function PostForm(){
   })
   const [createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
+    onError(err) {
+      console.log(`err: ${err.graphQLErrors[0].message}`)
+    },
     update(proxy, result) {
       console.log(`Post result: ${JSON.stringify(result, undefined, 2)}`);
       const data = proxy.readQuery({
@@ -30,21 +33,31 @@ function PostForm(){
 
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h2>Create Post</h2>
-      <Form.Field>
-        <Form.Input 
-          placeholder="Post body"
-          name="body"
-          onChange={onChange}
-          value={values.body}
-        />
+    <React.Fragment>
+      <Form onSubmit={onSubmit}>
+        <h2>Create Post</h2>
+        <Form.Field>
+          <Form.Input 
+            placeholder="Post body"
+            name="body"
+            onChange={onChange}
+            value={values.body}
+            error={error ? true : false}
+          />
 
-        <Button type="submit" color="primary">
-          Submit
-        </Button>
-      </Form.Field>
-    </Form>
+          <Button type="submit" color="green">
+            Submit
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </React.Fragment>
   )
 }
 
