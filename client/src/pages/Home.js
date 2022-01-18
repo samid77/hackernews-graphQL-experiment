@@ -31,11 +31,15 @@ function Home() {
           loading 
           ? (<h1>Loading posts...</h1>)
           : (
-            posts && posts.map(p => (
-              <Grid.Column key={p.id} style={{marginBottom: 20}}>
-                <PostCard post={p}/>
-              </Grid.Column>
-            ))
+            <Transition.Group>
+              {
+                posts && posts.map(p => (
+                  <Grid.Column key={p.id} style={{marginBottom: 20}}>
+                    <PostCard post={p}/>
+                  </Grid.Column>
+                ))
+              }
+            </Transition.Group>
           )
         }
       </Grid.Row>
