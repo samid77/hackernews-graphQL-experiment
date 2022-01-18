@@ -1,14 +1,14 @@
-import React, { useReducer, createContext } from 'react';
+import React, {createContext, useReducer} from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
   user: null
-};
+}
 
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+if(localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'))
 
-  if (decodedToken.exp * 1000 < Date.now()) {
+  if(decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken');
   } else {
     initialState.user = decodedToken;
@@ -18,8 +18,8 @@ if (localStorage.getItem('jwtToken')) {
 const AuthContext = createContext({
   user: null,
   login: (userData) => {},
-  logout: () => {}
-});
+  logout: () => {},
+})
 
 function authReducer(state, action) {
   switch (action.type) {
@@ -27,39 +27,40 @@ function authReducer(state, action) {
       return {
         ...state,
         user: action.payload
-      };
+      }
     case 'LOGOUT':
       return {
         ...state,
         user: null
-      };
-    default:
+      }
+    default: 
       return state;
   }
 }
 
 function AuthProvider(props) {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState)
 
-  function login(userData) {
-    localStorage.setItem('jwtToken', userData.token);
+  const login = (userData) => {
+    localStorage.setItem('jwtToken', userData.token)
     dispatch({
       type: 'LOGIN',
       payload: userData
-    });
+    })
   }
 
-  function logout() {
+  const logout = () => {
     localStorage.removeItem('jwtToken');
-    dispatch({ type: 'LOGOUT' });
+    dispatch({
+      type: 'LOGOUT'
+    })
   }
 
-  return (
-    <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
-      {...props}
-    />
-  );
+  return(
+    <AuthContext.Provider 
+      value={{user: state.user, login, logout}}
+      {...props}/>
+  )
 }
 
-export { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider}
